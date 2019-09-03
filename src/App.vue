@@ -4,7 +4,8 @@
       <h1>Border Radius Previewer</h1>
       <p>With VueJS</p>
     </div>
-    <div class="demo-wrapper">
+    <borderWrapper />
+    <!-- <div class="demo-wrapper">
       <div class="demo-component" :style="monitorBorder"></div>
       <div class="input-wrapper top-left">
         <input type="range" min="0" max="100" v-model="topLeft">
@@ -30,7 +31,7 @@
       <div class="input-wrapper left-top">
         <input type="range" min="0" max="100" v-model="leftTop">
       </div>
-    </div>
+    </div> -->
     <div class="copy-wrapper">
       <p>border-radius: </p>
       <div id="copy-contents" class="copy-content">
@@ -42,8 +43,12 @@
 </template>
 
 <script>
+import borderWrapper from './components/BorderWrapper';
 export default {
   name: 'app',
+  components: {
+    borderWrapper
+  },
   data(){
     return {
       topLeft: 33,
