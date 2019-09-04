@@ -4,38 +4,15 @@
       <h1>Border Radius Previewer</h1>
       <p>With VueJS</p>
     </div>
-    <borderWrapper />
-    <!-- <div class="demo-wrapper">
-      <div class="demo-component" :style="monitorBorder"></div>
-      <div class="input-wrapper top-left">
-        <input type="range" min="0" max="100" v-model="topLeft">
-      </div>
-      <div class="input-wrapper top-right">
-        <input type="range" min="0" max="100" v-model="topRight">
-      </div>
-      <div class="input-wrapper right-top">
-        <input type="range" min="0" max="100" v-model="rightTop">
-      </div>
-      <div class="input-wrapper right-bottom">
-        <input type="range" min="0" max="100" v-model="rightBottom">
-      </div>
-      <div class="input-wrapper bottom-right">
-        <input type="range" min="0" max="100" v-model="bottomRight">
-      </div>
-      <div class="input-wrapper bottom-left">
-        <input type="range" min="0" max="100" v-model="bottomLeft">
-      </div>
-      <div class="input-wrapper left-bottom">
-        <input type="range" min="0" max="100" v-model="leftBottom">
-      </div>
-      <div class="input-wrapper left-top">
-        <input type="range" min="0" max="100" v-model="leftTop">
-      </div>
-    </div> -->
+    <borderWrapper
+      @border-list="borderList"
+    />
     <div class="copy-wrapper">
       <p>border-radius: </p>
       <div id="copy-contents" class="copy-content">
-        <span style="color:red;">{{topLeft}}% </span><span style="color:lightblue;">{{topRight}}% </span><span style="color:violet;">{{rightBottom}}% </span><span style="color:khaki;">{{bottomLeft}}% </span><span style="color:white;">/ </span><span style="color:aqua;">{{leftTop}}% </span><span style="color:chartreuse;">{{rightTop}}% </span><span style="color:skyblue;">{{bottomRight}}% </span><span style="color:orange;">{{leftBottom}}%;</span>
+        <copyWrapper
+          :radiusList="this.border"
+        />
       </div>
       <button @click="copy">COPY</button>
     </div>
@@ -44,25 +21,22 @@
 
 <script>
 import borderWrapper from './components/BorderWrapper';
+import copyWrapper from './components/CopyWrapper';
 export default {
   name: 'app',
   components: {
-    borderWrapper
+    borderWrapper,
+    copyWrapper
   },
   data(){
     return {
-      topLeft: 33,
-      topRight: 67,
-      rightBottom: 23,
-      bottomLeft: 77,
-      leftTop: 30,
-      rightTop: 81,
-      bottomRight: 19,
-      leftBottom: 70,
-      styleObject: {}
+      border: {}
     }
   },
   methods: {
+    borderList: function(e){
+      return this.border = e;
+    },
     copy: function(){
       const copyText = document.getElementById('copy-contents').textContent;
       const textArea = document.createElement('textarea');
@@ -71,23 +45,9 @@ export default {
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
-      alert("Copied the text: " + textArea.textContent);
-    }
+    },
   },
   computed: {
-    monitorBorder: function(){
-      const borderTL = String(this.topLeft + '%' + " " + this.leftTop + '%');
-      const borderTR = String(this.topRight + '%' + " " + this.rightTop + '%');
-      const borderBR = String(this.bottomRight + '%' + " " + this.rightBottom + '%');
-      const borderBL = String(this.bottomLeft + '%' + " " + this.leftBottom + '%');
-      const styleObject = {
-        'border-top-left-radius': borderTL,
-        'border-top-right-radius': borderTR,
-        'border-bottom-right-radius': borderBR,
-        'border-bottom-left-radius': borderBL
-      };
-      return styleObject;
-    }
   }
 }
 </script>

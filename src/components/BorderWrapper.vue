@@ -75,6 +75,10 @@ export default {
           break;
         }
       }
+      this.emitRadiusList();
+    },
+    emitRadiusList: function(){
+      this.$emit('border-list', this.radiusLists);
     }
   },
   computed: {
