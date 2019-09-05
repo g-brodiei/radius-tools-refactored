@@ -76,4 +76,19 @@ export default {
   .left-top {
     grid-area: left-top;
   }
+
+  .right-top, .right-bottom {
+    input[type="range"]{
+      transform: rotate(90deg);
+    }
+  }
+  .left-top, .left-bottom {
+    input[type="range"]{
+      transform: rotate(-90deg);
+    }
+  }
+
+  .right-bottom, .bottom-right, .top-right, .left-top {
+    direction: rtl;
+  }
 </style>

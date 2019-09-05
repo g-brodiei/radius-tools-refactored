@@ -16,17 +16,20 @@
       </div>
       <button @click="copy">COPY</button>
     </div>
+    <footerSection/>
   </div>
 </template>
 
 <script>
 import borderWrapper from './components/BorderWrapper';
 import copyWrapper from './components/CopyWrapper';
+import footerSection from './components/Footer';
 export default {
   name: 'app',
   components: {
     borderWrapper,
-    copyWrapper
+    copyWrapper,
+    footerSection
   },
   data(){
     return {
@@ -93,53 +96,6 @@ html {
   align-self: center;
 }
 
-.top-left {
-  grid-area: top-left;
-}
-
-.top-right {
-  grid-area: top-right;
-}
-
-.right-top {
-  grid-area: right-top;
-}
-
-.right-bottom {
-  grid-area: right-bottom;
-}
-
-.bottom-right {
-  grid-area: bottom-right;
-}
-
-.bottom-left {
-  grid-area: bottom-left;
-}
-
-.left-bottom {
-  grid-area: left-bottom;
-}
-
-.left-top {
-  grid-area: left-top;
-}
-
-.right-top, .right-bottom {
-  input[type="range"]{
-    transform: rotate(90deg);
-  }
-}
-.left-top, .left-bottom {
-  input[type="range"]{
-    transform: rotate(-90deg);
-  }
-}
-
-.right-bottom, .bottom-right, .top-right, .left-top {
-  direction: rtl;
-}
-
 .copy-wrapper {
   display: flex;
   align-items: stretch;
@@ -159,11 +115,32 @@ p {
   padding: 25px 10px;
   background-color: #2c3e50;
 }
-
-input[type="range"] {
-  // overflow: hidden;
-  background-color: blue;
-  -webkit-appearance: none;
-  height: 5px;
-}
+  @media only screen and (max-width:1200px) {
+    .demo-wrapper {
+      grid-template-columns: 50px repeat(4, 1fr) 50px;
+      grid-template-rows: 50px repeat(4, 1fr) 50px;
+    }
+  }
+  @media only screen and (max-width:768px) {
+    .demo-wrapper {
+      grid-template-columns: 50px repeat(4, 1fr) 50px;
+      grid-template-rows: 50px repeat(4, 1fr) 50px;
+    }
+  }
+  @media only screen and (max-width:576px) {
+    .demo-wrapper {
+      grid-template-columns: 25px repeat(4, 1fr) 25px;
+      grid-template-rows: 25px repeat(4, 1fr) 25px;
+      width: 85vmin;
+      height: 85min;
+    }
+  }
+  @media only screen and (max-width:420px) {
+    .demo-wrapper {
+      grid-template-columns: 5px repeat(4, 1fr) 5px;
+      grid-template-rows: 5px repeat(4, 1fr) 5px;
+      width: 85vmin;
+      height: 85vmin;
+    }
+  }
 </style>
