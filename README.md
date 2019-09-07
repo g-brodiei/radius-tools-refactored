@@ -11,7 +11,7 @@ components, breaking down html structure of radius tools into four components un
   - CopyWrapper.vue (parent2)
     - PercentDisplay.vue (child2)
 
-TL;DR: passing data from child to child, going through the hierarchy level of app structure. child1 > parent1 > grandparent > parent2 > child2.
+**TL;DR:** passing data from child to child, going through the hierarchy level of app structure. child1 > parent1 > grandparent > parent2 > child2.
 
 ### Listening to child events, and pass it to parent. (Send data upward)
 #### Resource
